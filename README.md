@@ -1,9 +1,16 @@
-# StockMarket
-A trading order book that will help you analyze the market
+# How to run
+ Run the script:
 
-## Goals
+Bash
+python3 main.py
+
+
+Or make it executable:
+
+Bash
+chmod +x main.py
+./main.py
+
+## The purpose
+The script displays the current state of the project components
  
- The goal of this project is to create a trading order book that helps users analyze market activity.
-
- The application will provide tools for tracking orders and understanding market behavior.
-
