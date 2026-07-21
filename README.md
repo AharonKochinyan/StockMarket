@@ -1,14 +1,12 @@
 # How to run
  Run the script:
 
-Bash
+
 python3 main.py
 
 
-Or make it executable:
+Or 
 
-Bash
-chmod +x main.py
 ./main.py
 
 ## The purpose
