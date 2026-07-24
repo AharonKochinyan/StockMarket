@@ -2,4 +2,6 @@ secrets.env
 *.log
 archive/
 .DS_Store
-
+.venv/
+__pycache__/
+*.pyc
