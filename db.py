@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 
-URL = os.environ["DATABASE_URL"]
+URL = os.environ.get("DATABASE_URL", "postgresql://genesis:secret@localhost:5432/genesis")
 
 
 engine = create_engine(URL)
