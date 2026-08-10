@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: .
+    container_name: stockmarket-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://genesis:secret@postgres:5432/genesis
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: stockmarket-postgres
+    environment:
+      POSTGRES_USER: genesis
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: genesis
+   
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U genesis -d genesis"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
