@@ -1,0 +1,472 @@
+```css
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0f14;
+    color: #e6edf3;
+    min-height: 100vh;
+}
+
+.container {
+    width: 95%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 30px 0 50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #8b949e;
+    font-size: 15px;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: grid;
+    grid-template-columns: 180px 1fr 220px 180px;
+    gap: 15px;
+
+    background: #11161d;
+    border: 1px solid #252c35;
+    border-radius: 12px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control label {
+    color: #8b949e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+select,
+input {
+    width: 100%;
+    height: 44px;
+
+    background: #0b0f14;
+    border: 1px solid #303944;
+    border-radius: 8px;
+
+    color: #e6edf3;
+    padding: 0 12px;
+
+    font-size: 14px;
+    outline: none;
+}
+
+select:focus,
+input:focus {
+    border-color: #58a6ff;
+}
+
+select {
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: #6e7681;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.button-control {
+    justify-content: flex-end;
+}
+
+button {
+    height: 44px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #238636;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #2ea043;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   SELECTED MARKET
+========================= */
+
+.selected-market {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.selected-market > div {
+    background: #11161d;
+    border: 1px solid #252c35;
+    border-radius: 12px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.label {
+    color: #8b949e;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.selected-market strong {
+    font-size: 18px;
+}
+
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+.market-section,
+.arbitrage,
+.orderbook-section {
+    background: #11161d;
+    border: 1px solid #252c35;
+    border-radius: 12px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.section-header h2,
+.arbitrage h2 {
+    font-size: 20px;
+}
+
+.section-header span {
+    color: #8b949e;
+    font-size: 13px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #0d1218;
+}
+
+th {
+    text-align: left;
+
+    color: #8b949e;
+    font-size: 12px;
+    font-weight: 600;
+
+    padding: 13px 15px;
+
+    border-bottom: 1px solid #252c35;
+}
+
+td {
+    padding: 15px;
+
+    border-bottom: 1px solid #20262e;
+
+    font-size: 14px;
+}
+
+tbody tr {
+    transition: background 0.15s;
+}
+
+tbody tr:hover {
+    background: #171d25;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   PRICE COLORS
+========================= */
+
+td:nth-child(2) {
+    color: #3fb950;
+}
+
+td:nth-child(3) {
+    color: #f85149;
+}
+
+td:nth-child(4) {
+    color: #e6edf3;
+    font-weight: 600;
+}
+
+td:nth-child(5) {
+    color: #58a6ff;
+}
+
+
+/* =========================
+   ARBITRAGE
+========================= */
+
+.arbitrage {
+    border-color: #303944;
+}
+
+.arbitrage h2 {
+    margin-bottom: 18px;
+}
+
+.arbitrage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.opportunity {
+    background: #0b0f14;
+
+    border: 1px solid #252c35;
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.opportunity span {
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.opportunity strong {
+    font-size: 22px;
+}
+
+#bestBuy {
+    color: #3fb950;
+}
+
+#bestSell {
+    color: #f85149;
+}
+
+#priceDifference {
+    color: #58a6ff;
+}
+
+
+/* =========================
+   ORDER BOOK
+========================= */
+
+.orderbook {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.orderbook-side {
+    background: #0b0f14;
+    border: 1px solid #252c35;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.orderbook-side h3 {
+    padding: 15px;
+
+    font-size: 15px;
+
+    border-bottom: 1px solid #252c35;
+}
+
+.orderbook-side table {
+    font-size: 13px;
+}
+
+.orderbook-side th {
+    padding: 11px 14px;
+}
+
+.orderbook-side td {
+    padding: 10px 14px;
+}
+
+
+/* ASK PRICES */
+
+#asks td:first-child {
+    color: #f85149;
+}
+
+
+/* BID PRICES */
+
+#bids td:first-child {
+    color: #3fb950;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0f14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #303944;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .button-control {
+        justify-content: flex-start;
+    }
+
+    .selected-market {
+        grid-template-columns: 1fr;
+    }
+
+    .arbitrage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .orderbook {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+        padding-top: 20px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .market-section,
+    .arbitrage,
+    .orderbook-section {
+        padding: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+}
+
