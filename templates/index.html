@@ -1,15 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Market</title>
+
+    <title>Crypto Market Manager</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
 
-    <h1>📈 Binance Order Book</h1>
+<div class="container">
 
-    <p>Welcome!</p>
+    <header class="header">
+        <h1>Crypto Market Manager</h1>
+        <p>Real-time cryptocurrency market data</p>
+    </header>
+
+
+    <!-- MARKET CONTROLS -->
+
+    <section class="controls">
+
+        <!-- SPOT / FUTURES -->
+
+        <div class="control">
+
+            <label for="market">
+                Market
+            </label>
+
+            <select id="market">
+
+                <option value="spot">
+                    Spot
+                </option>
+
+                <option value="futures">
+                    Futures
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SEARCH PAIR -->
+
+        <div class="control pair-control">
+
+            <label for="pairSearch">
+                Search Pair
+            </label>
+
+            <input
+                type="text"
+                id="pairSearch"
+                placeholder="Search BTC, ETH, SOL..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- PAIR -->
+
+        <div class="control">
+
+            <label for="pair">
+                Trading Pair
+            </label>
+
+            <select id="pair">
+
+                <option value="BTCUSDT">
+                    BTC / USDT
+                </option>
+
+                <option value="ETHUSDT">
+                    ETH / USDT
+                </option>
+
+                <option value="BNBUSDT">
+                    BNB / USDT
+                </option>
+
+                <option value="SOLUSDT">
+                    SOL / USDT
+                </option>
+
+                <option value="XRPUSDT">
+                    XRP / USDT
+                </option>
+
+                <option value="DOGEUSDT">
+                    DOGE / USDT
+                </option>
+
+                <option value="ADAUSDT">
+                    ADA / USDT
+                </option>
+
+                <option value="AVAXUSDT">
+                    AVAX / USDT
+                </option>
+
+                <option value="LINKUSDT">
+                    LINK / USDT
+                </option>
+
+                <option value="DOTUSDT">
+                    DOT / USDT
+                </option>
+
+                <option value="TRXUSDT">
+                    TRX / USDT
+                </option>
+
+                <option value="LTCUSDT">
+                    LTC / USDT
+                </option>
+
+                <option value="SHIBUSDT">
+                    SHIB / USDT
+                </option>
+
+                <option value="BCHUSDT">
+                    BCH / USDT
+                </option>
+
+                <option value="UNIUSDT">
+                    UNI / USDT
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <div class="control button-control">
+
+            <button id="loadData">
+                Show Market
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECTED MARKET -->
+
+    <section class="selected-market">
+
+        <div>
+
+            <span class="label">
+                Market
+            </span>
+
+            <strong id="selectedMarket">
+                Spot
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span class="label">
+                Pair
+            </span>
+
+            <strong id="selectedPair">
+                BTC / USDT
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span class="label">
+                Status
+            </span>
+
+            <strong id="connectionStatus">
+                Disconnected
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXCHANGE PRICES -->
+
+    <section class="market-section">
+
+        <div class="section-header">
+
+            <h2>
+                Exchange Prices
+            </h2>
+
+            <span id="lastUpdate">
+                Last update: —
+            </span>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Exchange</th>
+                        <th>Bid</th>
+                        <th>Ask</th>
+                        <th>Last Price</th>
+                        <th>Spread</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="marketTable">
+
+                    <tr>
+                        <td><strong>Binance</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Bybit</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>OKX</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Kraken</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- BEST ARBITRAGE -->
+
+    <section class="arbitrage">
+
+        <h2>
+            Best Opportunity
+        </h2>
+
+        <div class="arbitrage-grid">
+
+            <div class="opportunity">
+
+                <span>
+                    Buy
+                </span>
+
+                <strong id="bestBuy">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="opportunity">
+
+                <span>
+                    Sell
+                </span>
+
+                <strong id="bestSell">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="opportunity">
+
+                <span>
+                    Price Difference
+                </span>
+
+                <strong id="priceDifference">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDER BOOK -->
+
+    <section class="orderbook-section">
+
+        <div class="section-header">
+
+            <h2>
+                Order Book
+            </h2>
+
+            <span id="orderbookExchange">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="orderbook">
+
+
+            <!-- ASKS -->
+
+            <div class="orderbook-side">
+
+                <h3>
+                    Asks
+                </h3>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="asks">
+
+                        <tr>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- BIDS -->
+
+            <div class="orderbook-side">
+
+                <h3>
+                    Bids
+                </h3>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="bids">
+
+                        <tr>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="/static/js/app.js"></script>
 
 </body>
+
 </html>
