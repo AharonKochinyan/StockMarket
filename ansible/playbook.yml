@@ -1,0 +1,88 @@
+---
+- name: Configure Docker and deploy application
+  hosts: app
+  become: true
+
+  tasks:
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: true
+
+    - name: Install Docker Compose plugin
+      apt:
+        name: docker-compose-v2
+        state: present
+
+    - name: Start and enable Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Create application directory
+      file:
+        path: /opt/stockmarket
+        state: directory
+        mode: '0755'
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "{{ playbook_dir }}/../docker-compose.yml"
+        dest: /opt/stockmarket/docker-compose.yml
+        mode: '0644'
+
+    - name: Copy Dockerfile
+      copy:
+        src: "{{ playbook_dir }}/../Dockerfile"
+        dest: /opt/stockmarket/Dockerfile
+        mode: '0644'
+
+    - name: Copy requirements.txt
+      copy:
+        src: "{{ playbook_dir }}/../requirements.txt"
+        dest: /opt/stockmarket/requirements.txt
+        mode: '0644'
+
+    - name: Copy app.py
+      copy:
+        src: "{{ playbook_dir }}/../app.py"
+        dest: /opt/stockmarket/app.py
+        mode: '0644'
+
+    - name: Copy db.py
+      copy:
+        src: "{{ playbook_dir }}/../db.py"
+        dest: /opt/stockmarket/db.py
+        mode: '0644'
+
+    - name: Copy main.py
+      copy:
+        src: "{{ playbook_dir }}/../main.py"
+        dest: /opt/stockmarket/main.py
+        mode: '0644'
+
+    - name: Copy exchanges directory
+      copy:
+        src: "{{ playbook_dir }}/../exchanges/"
+        dest: /opt/stockmarket/exchanges/
+        mode: '0644'
+
+    - name: Copy services directory
+      copy:
+        src: "{{ playbook_dir }}/../services/"
+        dest: /opt/stockmarket/services/
+        mode: '0644'
+
+    - name: Copy templates directory
+      copy:
+        src: "{{ playbook_dir }}/../templates/"
+        dest: /opt/stockmarket/templates/
+        mode: '0644'
+
+    - name: Start application with Docker Compose
+      command: docker compose up -d --build
+      args:
+        chdir: /opt/stockmarket
