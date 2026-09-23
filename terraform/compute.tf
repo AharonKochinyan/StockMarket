@@ -48,6 +48,13 @@ resource "aws_instance" "app" {
 
             systemctl enable --now docker
             usermod -aG docker ubuntu
+            cat > /tmp/init.sh <<'BOOTSTRAP'  
+            ${file("${path.module}/scripts/init.sh")}  
+            BOOTSTRAP  
+
+            chmod +x /tmp/init.sh  
+            /tmp/init.sh
+
             EOF
 
 
